@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30576786-9cd6-41c4-9e0a-1d839b6daff2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/App.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/Domain.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/src/Entities/Dryer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/src/Entities/DryingProcess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/src/Entities/Laundry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/src/Entities/Washer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/src/Entities/WashingProcess.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Infrastructure.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/src/DatabaseContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/src/DatabaseCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/src/SqlCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PublicLaundry.iml" afterDir="false" />
-    </list>
+    <list default="true" id="30576786-9cd6-41c4-9e0a-1d839b6daff2" name="Changes" comment="Done initializing database" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,6 +71,14 @@
       <option name="presentableId" value="Default" />
       <updated>1674765024974</updated>
     </task>
+    <task id="LOCAL-00001" summary="Done initializing database">
+      <created>1674770546970</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674770546970</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +91,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Done initializing database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done initializing database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
