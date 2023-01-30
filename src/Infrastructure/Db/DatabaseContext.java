@@ -1,6 +1,7 @@
+package Infrastructure.Db;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 
 public class DatabaseContext
 {
@@ -18,7 +19,8 @@ public class DatabaseContext
                     "SELECT datname FROM pg_catalog.pg_database WHERE lower(datname) = lower('" + DATABASE_NAME + "')" +
                     ");");
 
-            isCreated = res.getBoolean(0);
+            res.next();
+            isCreated = res.getBoolean(1);
             cmd.close();
         }
         catch (Exception e)
@@ -36,7 +38,7 @@ public class DatabaseContext
 
     public static void createDatabase()
     {
-        var conn = getConnection("postgres");
+        var conn = getConnection("postgres", false);
 
         DatabaseCreator.createDatabase(conn, DATABASE_NAME);
         SaveChanges(conn, true);
@@ -55,7 +57,8 @@ public class DatabaseContext
     {
         try
         {
-            conn.commit();
+            if (!conn.getAutoCommit())
+                conn.commit();
 
             if (close) closeConnection(conn);
         }
@@ -75,7 +78,8 @@ public class DatabaseContext
     {
         try
         {
-            conn.rollback();
+            if (!conn.getAutoCommit())
+                conn.rollback();
 
             if (close) closeConnection(conn);
         }
@@ -104,7 +108,7 @@ public class DatabaseContext
         }
     }
 
-    private static Connection getConnection(String databaseName)
+    private static Connection getConnection(String databaseName, Boolean transaction)
     {
         Connection connection = null;
 
@@ -113,7 +117,8 @@ public class DatabaseContext
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/" + databaseName,
                     "postgres", "Aaa123456");
-            connection.setAutoCommit(false);
+
+            connection.setAutoCommit(!transaction);
         }
         catch (Exception e)
         {
@@ -123,5 +128,10 @@ public class DatabaseContext
         }
 
         return connection;
+    }
+
+    private static Connection getConnection(String databaseName)
+    {
+        return getConnection(databaseName, true);
     }
 }

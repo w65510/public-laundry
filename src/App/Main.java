@@ -1,3 +1,8 @@
+package App;
+
+import App.Views.MainMenu;
+import Infrastructure.Db.DatabaseContext;
+
 public class Main
 {
     public static void main(String[] args)
@@ -5,6 +10,6 @@ public class Main
         if (!DatabaseContext.isDatabaseCreated())
             DatabaseContext.createDatabase();
 
-        var conn = DatabaseContext.getConnection();
+        ViewManager.showView(MainMenu.class);
     }
 }
