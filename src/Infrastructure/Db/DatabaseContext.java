@@ -41,19 +41,19 @@ public class DatabaseContext
         var conn = getConnection("postgres", false);
 
         DatabaseCreator.createDatabase(conn, DATABASE_NAME);
-        SaveChanges(conn, true);
+        saveChanges(conn, true);
 
         conn = getConnection();
         DatabaseCreator.createTables(conn);
-        SaveChanges(conn);
+        saveChanges(conn);
     }
 
-    public static void SaveChanges(Connection conn)
+    public static void saveChanges(Connection conn)
     {
-        SaveChanges(conn, false);
+        saveChanges(conn, false);
     }
 
-    public static void SaveChanges(Connection conn, Boolean close)
+    public static void saveChanges(Connection conn, Boolean close)
     {
         try
         {

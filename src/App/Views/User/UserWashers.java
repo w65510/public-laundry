@@ -1,7 +1,10 @@
-package App.Views;
+package App.Views.User;
 
 import App.GlobalVariables;
 import App.InputManager;
+import App.Models.Menu;
+import App.ViewManager;
+import App.Views.ApplicationView;
 import Infrastructure.Db.QueryManager;
 
 import java.sql.SQLException;
@@ -15,25 +18,23 @@ public class UserWashers extends ApplicationView
             return false;
 
         System.out.println("Którą pralkę chcesz wybrać?");
-        System.out.println();
-
         var washers = QueryManager.getUserWashers();
+
+        var menu = new Menu();
+
         for (var i = 0; i < washers.size(); i++) {
-            var string = (i+1) + ". " + washers.get(i).toString();
-            System.out.println(string);
+            var washer = washers.get(i);
+            menu.addItem(washer.toString(), () -> {
+                GlobalVariables.SelectedWasher = washer.Id;
+                ViewManager.showView(UserWasherManage.class);
+                GlobalVariables.SelectedWasher = 0;
+            }, true);
         }
 
-        System.out.println(washers.size()+1 + ". Powrót");
-        var choice = getChoice(washers.size()+1);
+        menu.addItem("Powrót", () -> { }, false);
 
-        if (choice == washers.size()+1)
-            return false;
-
-        GlobalVariables.SelectedWasher = washers.get(choice-1).Id;
-        System.out.println("Funkcja jeszcze nie zaimplementowana");
-        InputManager.pressEnterToContinue();
-
-        return true;
+        menu.show();
+        return menu.handle();
     }
 
     private Boolean anyWorkingWasher() throws SQLException
