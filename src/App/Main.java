@@ -1,6 +1,6 @@
 package App;
 
-import App.Views.MainMenu;
+import App.Views.MainMenuView;
 import Infrastructure.Db.DatabaseContext;
 
 public class Main
@@ -10,6 +10,7 @@ public class Main
         if (!DatabaseContext.isDatabaseCreated())
             DatabaseContext.createDatabase();
 
-        ViewManager.showView(MainMenu.class);
+        ViewManager.showView(MainMenuView.class);
+        InputManager.clearConsole();
     }
 }

@@ -10,9 +10,4 @@ import java.util.Optional;
 public abstract class ApplicationView
 {
     public abstract Boolean show() throws SQLException;
-
-    protected int getChoice(int max) {
-        System.out.println();
-        return InputManager.getIntPrompt("Wybór", Optional.ofNullable(x -> x >= 1 && x <= max));
-    }
 }

@@ -25,6 +25,13 @@ public class Menu
         var choice = InputManager.getIntPrompt(text, Optional.ofNullable(x -> x > 0 && x <= Items.size()));
 
         var item = Items.get(choice-1);
+
+        if (item.action == null){
+            System.out.println("Funkcja jeszcze nie zaimplementowana");
+            InputManager.pressEnterToContinue();
+            return true;
+        }
+
         item.action.run();
 
         return item.continueView;

@@ -3,9 +3,10 @@ package App.Models;
 import App.Extensions;
 
 import java.sql.Timestamp;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class UserWasher
+public class userMachine
 {
     public int Id;
     public String Name;
@@ -18,7 +19,10 @@ public class UserWasher
 
         if (EndDate != null) {
             if (Extensions.isInFuture(EndDate))
-                status = "Zajęta do " + EndDate;
+            {
+                var duration = Duration.between(LocalDateTime.now(), EndDate.toLocalDateTime());
+                status = "Zajęta do " + Extensions.DurationToString(duration);
+            }
             else
                 status = "Pranie do odbioru";
         }

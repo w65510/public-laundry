@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class DryingProcess
 {
-    public String TableName = "drying_process";
+    public static String TableName = "drying_process";
 
     public int id;
     public int cost;

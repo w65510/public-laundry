@@ -9,7 +9,7 @@ import Infrastructure.Db.QueryManager;
 
 import java.sql.SQLException;
 
-public class UserWashers extends ApplicationView
+public class UserWashersView extends ApplicationView
 {
     @Override
     public Boolean show() throws SQLException
@@ -26,11 +26,12 @@ public class UserWashers extends ApplicationView
             var washer = washers.get(i);
             menu.addItem(washer.toString(), () -> {
                 GlobalVariables.SelectedWasher = washer.Id;
-                ViewManager.showView(UserWasherManage.class);
-                GlobalVariables.SelectedWasher = 0;
+                ViewManager.showView(UserWasherManageView.class);
+                GlobalVariables.SelectedWasher = -1;
             }, true);
         }
 
+        menu.addItem("Odśwież", () -> { }, true);
         menu.addItem("Powrót", () -> { }, false);
 
         menu.show();
