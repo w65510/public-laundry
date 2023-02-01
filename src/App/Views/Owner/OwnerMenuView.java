@@ -16,7 +16,7 @@ public class OwnerMenuView extends ApplicationView
         System.out.println("Co chcesz zrobić?");
 
         var menu = new Menu();
-        menu.addItem("Wyświetl pralki", null, true);
+        menu.addItem("Wyświetl pralki", () -> ViewManager.showView(OwnerWashersView.class), true);
         menu.addItem("Wyświetl suszarki", null, true);
         menu.addItem("Powrót", () -> { }, false);
 

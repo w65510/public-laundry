@@ -3,7 +3,7 @@ package App.Views.User;
 import App.Extensions;
 import App.InputManager;
 import App.Models.Menu;
-import App.Models.userMachine;
+import App.Models.UserMachine;
 import App.Views.ApplicationView;
 import Domain.Entities.Laundry;
 import Infrastructure.Db.QueryManager;
@@ -16,7 +16,7 @@ import java.util.Optional;
 public class DryLaundryView extends ApplicationView
 {
     ArrayList<Laundry> userLaundry = new ArrayList<>();
-    userMachine dryer;
+    UserMachine dryer;
 
     @Override
     public Boolean show() throws SQLException

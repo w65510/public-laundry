@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
-public class userMachine
+public class UserMachine
 {
     public int Id;
     public String Name;
@@ -27,7 +27,7 @@ public class userMachine
                 status = "Pranie do odbioru";
         }
 
-        return String.format("Nazwa: %1$-20s Cena prania: %2$-8s Ładowność: %3$-8s Status: %4$s",
-                Name, Price + "zł", MaxCapacity + "kg", status);
+        return String.format("Nazwa: %1$-20s Cena: %2$-10s Ładowność: %3$-8s Status: %4$s",
+                Name, Price + "zł/kg", MaxCapacity + "kg", status);
     }
 }

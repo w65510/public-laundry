@@ -35,12 +35,12 @@ public class DatabaseCreator
             cmd.execute(SqlCollection.CreateTableDryingLaundry);
             cmd.execute(SqlCollection.CreateTableLaundry);
 
-            var sql = "ALTER TABLE washing_process ADD FOREIGN KEY (washer_id) REFERENCES washers (id);\n" +
-                    "ALTER TABLE drying_process ADD FOREIGN KEY (dryer_id) REFERENCES dryers (id);\n" +
-                    "ALTER TABLE drying_laundry ADD FOREIGN KEY (process_id) REFERENCES drying_process (id);\n" +
-                    "ALTER TABLE drying_laundry ADD FOREIGN KEY (laundry_id) REFERENCES laundry (id);\n" +
-                    "ALTER TABLE washing_laundry ADD FOREIGN KEY (process_id) REFERENCES washing_process (id);\n" +
-                    "ALTER TABLE washing_laundry ADD FOREIGN KEY (laundry_id) REFERENCES laundry (id);";
+            var sql = "ALTER TABLE washing_process ADD FOREIGN KEY (washer_id) REFERENCES washers (id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE drying_process ADD FOREIGN KEY (dryer_id) REFERENCES dryers (id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE drying_laundry ADD FOREIGN KEY (process_id) REFERENCES drying_process (id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE drying_laundry ADD FOREIGN KEY (laundry_id) REFERENCES laundry (id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE washing_laundry ADD FOREIGN KEY (process_id) REFERENCES washing_process (id) ON DELETE CASCADE;\n" +
+                    "ALTER TABLE washing_laundry ADD FOREIGN KEY (laundry_id) REFERENCES laundry (id) ON DELETE CASCADE;";
 
             cmd.execute(sql);
             cmd.close();

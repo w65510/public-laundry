@@ -14,20 +14,25 @@ public class OwnerWashersView extends ApplicationView
     @Override
     public Boolean show() throws SQLException
     {
-        var washers = QueryManager.getUserDryers();
-        System.out.println("Którą suszarkę chcesz wybrać?");
+        var washers = QueryManager.getOwnerWashers();
+
+        if (washers.size() == 0)
+            System.out.println("Nie posiadasz żadnych pralek!");
+        else
+            System.out.println("Którą pralkę chcesz wybrać?");
 
         var menu = new Menu();
 
         for (var i = 0; i < washers.size(); i++) {
             var washer = washers.get(i);
             menu.addItem(washer.toString(), () -> {
-                GlobalVariables.SelectedDryer = washer.Id;
-                ViewManager.showView(UserDryerManageView.class);
-                GlobalVariables.SelectedDryer = -1;
+                GlobalVariables.SelectedWasher = washer.Id;
+                ViewManager.showView(OwnerWasherManageView.class);
+                GlobalVariables.SelectedWasher = -1;
             }, true);
         }
 
+        menu.addItem("Dodaj nową pralkę", null, true);
         menu.addItem("Odśwież", () -> { }, true);
         menu.addItem("Powrót", () -> { }, false);
 

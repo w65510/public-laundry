@@ -9,25 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30576786-9cd6-41c4-9e0a-1d839b6daff2" name="Changes" comment="Now it is possible to start laundry">
-      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerMenuView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWashersView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/User/DryLaundryView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/User/PickupLaundryView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/User/UserDryerManageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/User/UserDryersView.java" afterDir="false" />
+    <list default="true" id="30576786-9cd6-41c4-9e0a-1d839b6daff2" name="Changes" comment="Finished normal user functionalities">
+      <change afterPath="$PROJECT_DIR$/src/App/Models/OwnerMachine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Models/OwnerMachineStatistics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerModifyWasher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWasherManageView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWasherStatisticsView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/GlobalVariables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Models/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Models/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Models/UserWasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Models/userMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/ApplicationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/ApplicationView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/MainMenuView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/User/DoLaundry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/DoLaundryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/User/UserMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/UserMenuView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/User/UserWasherManage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/UserWasherManageView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/User/UserWashers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/UserWashersView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Entities/DryingProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Entities/DryingProcess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Models/userMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Models/UserMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/MainMenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/Owner/OwnerMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerMenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWashersView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWashersView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/User/DoLaundryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/DoLaundryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/User/DryLaundryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/DryLaundryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/User/PickupLaundryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/PickupLaundryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Db/DatabaseCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Db/DatabaseCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/Db/QueryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Db/QueryManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,6 +80,7 @@
       <recent name="C:\Users\Genotypek\IdeaProjects\PublicLaundry" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="App.Views.Owner" />
       <recent name="App.Views.User" />
     </key>
   </component>
@@ -137,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675206000240</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Finished normal user functionalities">
+      <created>1675284176357</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1675284176357</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -156,7 +161,8 @@
     <MESSAGE value="Upload missing file" />
     <MESSAGE value="Some views" />
     <MESSAGE value="Now it is possible to start laundry" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now it is possible to start laundry" />
+    <MESSAGE value="Finished normal user functionalities" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished normal user functionalities" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
