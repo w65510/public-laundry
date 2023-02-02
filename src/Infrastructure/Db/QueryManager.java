@@ -158,6 +158,16 @@ public class QueryManager
         return dryers.get(0);
     }
 
+    public static OwnerMachine getCurrentOwnerDryer() throws SQLException
+    {
+        var dryers = QueryManager.getOwnerDryers().stream().filter(x -> x.Id == GlobalVariables.SelectedDryer).collect(Collectors.toList());
+
+        if (dryers.size() == 0)
+            return null;
+
+        return dryers.get(0);
+    }
+
     public static void setCurrentWasherBroken()
     {
         var sql = """
@@ -236,7 +246,8 @@ public class QueryManager
                     SELECT pickup_code FROM %2$s
                     WHERE washer_id = w.id
                     AND pickup_date is null
-                ) as pickup
+                ) as pickup,
+                buy_date
                 FROM %1$s w
                 LEFT JOIN washing_process wp
                 ON w.id = wp.washer_id
@@ -259,6 +270,7 @@ public class QueryManager
             washer.IsBroken = res.getBoolean(5);
             washer.EndDate = res.getTimestamp(6);
             washer.PickupCode = res.getString(7);
+            washer.BuyDate = res.getTimestamp(8);
 
             washers.add(washer);
         }
@@ -267,6 +279,54 @@ public class QueryManager
         DatabaseContext.closeConnection(conn);
 
         return washers;
+    }
+
+    public static ArrayList<OwnerMachine> getOwnerDryers() throws SQLException
+    {
+        var sql = """
+                SELECT d.id, name, price, maxCapacity, is_broken,
+                (
+                    SELECT end_date FROM %2$s
+                    WHERE dryer_id = d.id
+                    AND pickup_date is null
+                ) as busy,
+                (
+                    SELECT pickup_code FROM %2$s
+                    WHERE dryer_id = d.id
+                    AND pickup_date is null
+                ) as pickup,
+                buy_date
+                FROM %1$s d
+                LEFT JOIN drying_process dp
+                ON d.id = dp.dryer_id
+                GROUP BY d.id, name, price, maxCapacity;
+                """.formatted(Dryer.TableName, DryingProcess.TableName);
+
+        var conn = DatabaseContext.getConnection();
+        var cmd = conn.createStatement();
+        var res = cmd.executeQuery(sql);
+
+        var dryers = new ArrayList<OwnerMachine>();
+
+        while (res.next()) {
+            var dryer = new OwnerMachine();
+
+            dryer.Id = res.getInt(1);
+            dryer.Name = res.getString(2);
+            dryer.Price = res.getInt(3);
+            dryer.MaxCapacity = res.getInt(4);
+            dryer.IsBroken = res.getBoolean(5);
+            dryer.EndDate = res.getTimestamp(6);
+            dryer.PickupCode = res.getString(7);
+            dryer.BuyDate = res.getTimestamp(8);
+
+            dryers.add(dryer);
+        }
+
+        cmd.close();
+        DatabaseContext.closeConnection(conn);
+
+        return dryers;
     }
 
     public static ArrayList<UserMachine> getUserDryers() throws SQLException
@@ -527,6 +587,26 @@ public class QueryManager
         }
     }
 
+    public static void deleteDryer(Integer id)
+    {
+        try {
+            var sql = """
+                        DELETE FROM %1$s
+                        WHERE id = %2$d;
+                    """.formatted(Dryer.TableName, id);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            cmd.execute(sql);
+
+            cmd.close();
+            DatabaseContext.saveChanges(conn, true);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void fixWasher(int id)
     {
         try {
@@ -535,6 +615,27 @@ public class QueryManager
                         SET is_broken = false 
                         WHERE id = %2$d;
                     """.formatted(Washer.TableName, id);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            cmd.execute(sql);
+
+            cmd.close();
+            DatabaseContext.saveChanges(conn, true);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void fixDryer(int id)
+    {
+        try {
+            var sql = """
+                        UPDATE %1$s
+                        SET is_broken = false 
+                        WHERE id = %2$d;
+                    """.formatted(Dryer.TableName, id);
 
             var conn = DatabaseContext.getConnection();
             var cmd = conn.createStatement();
@@ -572,6 +673,30 @@ public class QueryManager
         }
     }
 
+    public static void stopCurrentDryer()
+    {
+        var endDate = LocalDateTime.now().minus(Duration.ofSeconds(5));
+
+        try {
+            var sql = """
+                        UPDATE %1$s
+                        SET end_date = '%2$s'
+                        WHERE dryer_id = %3$d
+                        AND pickup_date IS NULL;
+                    """.formatted(DryingProcess.TableName, endDate, GlobalVariables.SelectedDryer);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            cmd.execute(sql);
+
+            cmd.close();
+            DatabaseContext.saveChanges(conn, true);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static OwnerMachineStatistics getCurrentOwnerWasherStatistics()
     {
         try {
@@ -595,6 +720,7 @@ public class QueryManager
             statistics.MaxCapacity = washer.MaxCapacity;
             statistics.PickupCode = washer.PickupCode;
             statistics.Price = washer.Price;
+            statistics.BuyDate = washer.BuyDate;
 
             if (res.next())
             {
@@ -606,6 +732,129 @@ public class QueryManager
             DatabaseContext.closeConnection(conn);
 
             return statistics;
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static OwnerMachineStatistics getCurrentOwnerDryerStatistics()
+    {
+        try {
+            var dryer = getCurrentOwnerDryer();
+
+            var sql = """
+                        SELECT COUNT(*), SUM(cost) FROM %1$s
+                        WHERE dryer_id = %2$d
+                        GROUP BY dryer_id;
+                    """.formatted(DryingProcess.TableName, GlobalVariables.SelectedDryer);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            var res = cmd.executeQuery(sql);
+
+            var statistics = new OwnerMachineStatistics();
+            statistics.Id = dryer.Id;
+            statistics.IsBroken = dryer.IsBroken;
+            statistics.Name = dryer.Name;
+            statistics.EndDate = dryer.EndDate;
+            statistics.MaxCapacity = dryer.MaxCapacity;
+            statistics.PickupCode = dryer.PickupCode;
+            statistics.Price = dryer.Price;
+            statistics.BuyDate = dryer.BuyDate;
+
+            if (res.next())
+            {
+                statistics.ProcessCount = res.getInt(1);
+                statistics.EarnSum = res.getInt(2);
+            }
+
+            cmd.close();
+            DatabaseContext.closeConnection(conn);
+
+            return statistics;
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void updateWasher(OwnerMachine washer)
+    {
+        try {
+            var sql = """
+                        UPDATE %1$s SET
+                        name = '%2$s',
+                        price = %3$d,
+                        maxCapacity = %4$d
+                        WHERE id = %5$d;
+                    """.formatted(Washer.TableName, washer.Name, washer.Price, washer.MaxCapacity, GlobalVariables.SelectedWasher);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            cmd.execute(sql);
+            cmd.close();
+            DatabaseContext.saveChanges(conn, true);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void updateDryer(OwnerMachine dryer)
+    {
+        try {
+            var sql = """
+                        UPDATE %1$s SET
+                        name = '%2$s',
+                        price = %3$d,
+                        maxCapacity = %4$d
+                        WHERE id = %5$d;
+                    """.formatted(Dryer.TableName, dryer.Name, dryer.Price, dryer.MaxCapacity, GlobalVariables.SelectedDryer);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            cmd.execute(sql);
+            cmd.close();
+            DatabaseContext.saveChanges(conn, true);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void createWasher(String name, int price, int maxCapacity)
+    {
+        try {
+            var sql = """
+                        INSERT INTO %1$s (name, price, maxCapacity, buy_date, is_broken)
+                        VALUES ('%2$s', %3$d, %4$d, NOW(), false);
+                    """.formatted(Washer.TableName, name, price, maxCapacity);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            cmd.execute(sql);
+            cmd.close();
+            DatabaseContext.saveChanges(conn, true);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void createDryer(String name, int price, int maxCapacity)
+    {
+        try {
+            var sql = """
+                        INSERT INTO %1$s (name, price, maxCapacity, buy_date, is_broken)
+                        VALUES ('%2$s', %3$d, %4$d, NOW(), false);
+                    """.formatted(Dryer.TableName, name, price, maxCapacity);
+
+            var conn = DatabaseContext.getConnection();
+            var cmd = conn.createStatement();
+            cmd.execute(sql);
+            cmd.close();
+            DatabaseContext.saveChanges(conn, true);
         }
         catch (Exception e) {
             throw new RuntimeException(e);

@@ -2,6 +2,7 @@ package App;
 
 import java.security.SecureRandom;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,6 +28,10 @@ public class Extensions
         return String.format("%02d", hours) + ":" +
                 String.format("%02d", minutes) + ":" +
                 String.format("%02d", seconds);
+    }
+
+    public static String TimeStampToString(Timestamp ts) {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(ts);
     }
 
     public static void openUrlInBrowser(String url) {

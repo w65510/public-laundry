@@ -32,7 +32,7 @@ public class OwnerWashersView extends ApplicationView
             }, true);
         }
 
-        menu.addItem("Dodaj nową pralkę", null, true);
+        menu.addItem("Dodaj nową pralkę", () -> ViewManager.showView(AddNewWasherView.class), true);
         menu.addItem("Odśwież", () -> { }, true);
         menu.addItem("Powrót", () -> { }, false);
 

@@ -9,22 +9,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30576786-9cd6-41c4-9e0a-1d839b6daff2" name="Changes" comment="Finished normal user functionalities">
-      <change afterPath="$PROJECT_DIR$/src/App/Models/OwnerMachine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Models/OwnerMachineStatistics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerModifyWasher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWasherManageView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWasherStatisticsView.java" afterDir="false" />
+    <list default="true" id="30576786-9cd6-41c4-9e0a-1d839b6daff2" name="Changes" comment="Some functionalities for owner">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/AddNewDryerView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/AddNewWasherView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerDryerManageView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerDryerStatisticsView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerDryersView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerModifyDryer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/GlobalVariables.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/GlobalVariables.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Models/userMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Models/UserMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/MainMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/MainMenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Extensions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Extensions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Models/OwnerMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Models/OwnerMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Models/OwnerMachineStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Models/OwnerMachineStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Views/Owner/OwnerMenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerMenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/Owner/OwnerModifyWasher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerModifyWasher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWasherManageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWasherManageView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWashersView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/Owner/OwnerWashersView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/User/DoLaundryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/DoLaundryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/User/DryLaundryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/DryLaundryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App/Views/User/PickupLaundryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App/Views/User/PickupLaundryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Db/DatabaseCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Db/DatabaseCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/Db/QueryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Db/QueryManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,22 +59,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "18",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "File.Encoding"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Genotypek\IdeaProjects\PublicLaundry" />
@@ -142,7 +142,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675284176357</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Some functionalities for owner">
+      <created>1675289029705</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1675289029705</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -162,7 +169,8 @@
     <MESSAGE value="Some views" />
     <MESSAGE value="Now it is possible to start laundry" />
     <MESSAGE value="Finished normal user functionalities" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished normal user functionalities" />
+    <MESSAGE value="Some functionalities for owner" />
+    <option name="LAST_COMMIT_MESSAGE" value="Some functionalities for owner" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

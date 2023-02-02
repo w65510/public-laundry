@@ -2,6 +2,7 @@ package App.Models;
 
 import App.Extensions;
 
+import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -9,6 +10,7 @@ public class OwnerMachine extends UserMachine
 {
     public Boolean IsBroken;
     public String PickupCode;
+    public Timestamp BuyDate;
 
     public String getStatus() {
         String status = "Wolna";

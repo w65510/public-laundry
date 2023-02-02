@@ -29,7 +29,7 @@ public class OwnerWasherManageView extends ApplicationView
 
         if (washer.EndDate == null) {
             menu.addItem("Sprzedaj pralkę", () -> sellWasher(), false);
-            menu.addItem("Modyfikuj parametry", null, true);
+            menu.addItem("Modyfikuj parametry", () -> ViewManager.showView(OwnerModifyWasher.class), true);
         }
         else if(Extensions.isInPast(washer.EndDate)) {
             System.out.println("\nPralka zakończyła działanie (Kod odbioru: " + washer.PickupCode + ")\nZnajdujące się w niej pranie:");
